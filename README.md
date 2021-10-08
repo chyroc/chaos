@@ -17,3 +17,18 @@ go get github.com/chyroc/chaos
 
 ## Usage
 
+### write to multi writer
+
+```go
+func Example_TeeWriter() {
+	buf := new(bytes.Buffer)
+	w := chaos.TeeWriter([]io.Writer{buf, os.Stdout}, nil)
+
+	w.Write([]byte("Hi, World."))
+
+	fmt.Println(buf.String())
+
+	// output:
+	// Hi, World.Hi, World.
+}
+```
