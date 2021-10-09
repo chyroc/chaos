@@ -1,4 +1,4 @@
-package chaos_test
+package main
 
 import (
 	"bytes"
@@ -9,8 +9,7 @@ import (
 	"github.com/chyroc/chaos"
 )
 
-// TeeWriter example
-func Example_TeeWriter() {
+func main() {
 	buf := new(bytes.Buffer)
 	w := chaos.TeeWriter([]io.Writer{buf, os.Stdout}, nil)
 
