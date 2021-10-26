@@ -11,3 +11,11 @@ import (
 func FindLastAfterSubstr(s, substr string) string {
 	return cstring.FindLastAfterSubstr(s, substr)
 }
+
+// CountPrefix 和 strings.Count 类似，不过 CountPrefix 只会统计以 substr 开头的个数
+//
+// 当 s=**1** substr=* 的时候，返回 2
+// 当 substr 为空的时候，一定返回 0
+func CountPrefix(s, substr string) int {
+	return cstring.CountPrefix(s, substr)
+}
