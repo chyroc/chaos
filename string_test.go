@@ -105,3 +105,41 @@ func Test_CountPrefix(t *testing.T) {
 		})
 	}
 }
+
+func TestContainAny(t *testing.T) {
+	type args struct {
+		s          string
+		substrList []string
+	}
+	tests := []struct {
+		name string
+		args args
+		want bool
+	}{
+		// nil
+		{"1", args{"", nil}, false},
+		{"1", args{"1", nil}, false},
+		{"1", args{"12", nil}, false},
+
+		// []string{}
+		{"2", args{"", []string{}}, false},
+		{"2", args{"1", []string{}}, false},
+		{"2", args{"12", []string{}}, false},
+
+		// []string{}
+		{"3", args{"", []string{""}}, true},
+		{"3", args{"1", []string{""}}, true},
+
+		// []string{}
+		{"4", args{"", []string{"x"}}, false},
+		{"4", args{"x", []string{"x"}}, true},
+		{"4", args{"xx", []string{"x"}}, true},
+	}
+	for _, tt := range tests {
+		t.Run(tt.name, func(t *testing.T) {
+			if got := ContainAny(tt.args.s, tt.args.substrList); got != tt.want {
+				t.Errorf("ContainAny() = %v, want %v", got, tt.want)
+			}
+		})
+	}
+}

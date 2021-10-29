@@ -1,6 +1,8 @@
 package chaos
 
 import (
+	"strings"
+
 	"github.com/chyroc/chaos/internal/cstring"
 )
 
@@ -18,4 +20,14 @@ func FindLastAfterSubstr(s, substr string) string {
 // 当 substr 为空的时候，一定返回 0
 func CountPrefix(s, substr string) int {
 	return cstring.CountPrefix(s, substr)
+}
+
+// ContainAny contain any of list
+func ContainAny(s string, substrList []string) bool {
+	for _, substr := range substrList {
+		if strings.Contains(s, substr) {
+			return true
+		}
+	}
+	return false
 }
